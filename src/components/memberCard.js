@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import instagramLogo from "../images/logos/instagram.svg";
 const memberCard = ({ name, image, sentence, instagram }) => {
-  console.log(name, image, sentence, instagram);
   let instagramElement = "";
   if (instagram) {
     instagramElement = (

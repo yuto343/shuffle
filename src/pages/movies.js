@@ -20,7 +20,6 @@ const getData = graphql`
 function movies() {
   const data = useStaticQuery(getData);
   const movieList = data.allMicrocmsSeasonMovies.edges;
-  console.log(movieList);
   return (
     <PageLayout>
       <SEO

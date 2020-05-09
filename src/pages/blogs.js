@@ -24,7 +24,6 @@ const getData = graphql`
 function blogs() {
   const data = useStaticQuery(getData);
   const blogList = data.allMicrocmsBlogs.edges;
-  console.log(blogList[0].node);
   return (
     <PageLayout>
       <SEO

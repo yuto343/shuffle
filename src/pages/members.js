@@ -25,8 +25,6 @@ const getData = graphql`
 function members() {
   const data = useStaticQuery(getData);
   const memberList = data.allMicrocmsLeadMembers.edges;
-  console.log(data);
-  console.log(memberList);
   return (
     <PageLayout>
       <PageTitle title="Members" />
