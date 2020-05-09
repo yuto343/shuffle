@@ -50,6 +50,11 @@ function PageLayout({ children }) {
       <div className="lg:flex hidden h-screen justify-center items-center">
         <div className="pj-section-bar"></div>
       </div>
+      <div className="md:hidden w-full">
+        <Link to="/">
+          <img src={shuffleLogo} className="block mx-auto w-1/3 p-3" />
+        </Link>
+      </div>
       <main className="mx-auto w-full p-4">{children}</main>
       <div className="lg:hidden w-full h-16"></div>
     </div>
