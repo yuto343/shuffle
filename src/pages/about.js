@@ -16,7 +16,7 @@ const AboutPage = () => {
       <div>
         <PageTitle title="About" />
         <div className="mt-8 text-md">
-          <img src={shuffleLogo} className="mx-auto block" />
+          <img src={shuffleLogo} className="mx-auto block md:w-1/4 w-1/2" />
           <div className="md:w-3/4 mx-auto w-11/12">
             <p className="mt-8">
               SHUFFLEは2012年4月に発足した同志社大学を拠点とした本格派スノーボード、フリースタイルスキー、スケートボードのサークルです。
