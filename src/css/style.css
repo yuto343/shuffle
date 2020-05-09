@@ -64,16 +64,83 @@
   color: #ff8845;
   text-decoration: underline;
 }
-.pj-post-sentence p {
+.pj-post-sentence {
   color: #d6d6d6;
 }
+.pj-post-sentence h1 {
+  color: white;
+  margin: 1.25rem auto;
+  font-size: 1.5rem;
+}
 .pj-post-sentence h2 {
+  color: white;
   margin: 1.25rem auto;
   font-size: 1.25rem;
   font-weight: bold;
 }
 .pj-post-sentence h3 {
+  color: white;
   margin: 1.25rem auto;
   font-size: 1.125rem;
   font-weight: bold;
+}
+.pj-post-sentence ul {
+  color: white;
+  margin: 1.25rem auto;
+}
+.pj-post-sentence ul li {
+  position: relative;
+  width: 94%;
+  padding-left: 30px;
+  margin: 1.125rem auto;
+}
+.pj-post-sentence ul li::before {
+  display: inline-block;
+  position: absolute;
+  left: 0px;
+  top: 7px;
+  width: 10px;
+  height: 10px;
+  color: rgb(255, 255, 255);
+  font-weight: 600;
+  font-size: 14px;
+  text-align: center;
+  content: "";
+  border-radius: 50%;
+  background: rgb(32, 168, 234);
+}
+.pj-post-sentence ol {
+  color: white;
+  margin: 1.25rem auto;
+  counter-reset: number 0;
+}
+.pj-post-sentence ol li {
+  position: relative;
+  width: 94%;
+  padding-left: 30px;
+  margin: 1.125rem auto;
+}
+.pj-post-sentence ol li::before {
+  display: inline-block;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 25px;
+  height: 25px;
+  color: rgb(255, 255, 255);
+  font-weight: 600;
+  font-size: 14px;
+  text-align: center;
+  line-height: 25px;
+  content: counter(number);
+  counter-increment: number 1;
+  border-radius: 50%;
+  background: rgb(32, 168, 234);
+}
+
+.pj-post-sentence blockquote {
+  color: white;
+  margin: 1.25rem auto;
+  padding: 1.125rem 0 1.125rem 10px;
+  border-left: 5px solid orange;
 }
