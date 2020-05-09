@@ -1,38 +1,61 @@
 import React from "react";
-
-import Layout from "../components/layout";
+import PageLayout from "../components/pageLayout";
+import shuffleLogo from "../images/shuffle-logo.svg";
+import { graphql, useStaticQuery } from "gatsby";
 import SEO from "../components/seo";
-import dogIllustration from "../images/dog-illustration.svg";
-
-function AboutPage() {
+import Image from "gatsby-image";
+import PageTitle from "../components/pageTitle";
+const AboutPage = () => {
+  const data = useStaticQuery(getImages);
   return (
-    <Layout>
+    <PageLayout>
       <SEO
         keywords={[`gatsby`, `tailwind`, `react`, `tailwindcss`]}
         title="About"
-      />
-
-      <section className="flex flex-col items-center md:flex-row">
-        <div className="md:w-2/3 md:mr-8">
-          <blockquote className="pl-4 font-serif leading-loose text-justify border-l-4 border-gray-900">
-            The point is... to live one&apos;s life in the full complexity of
-            what one is, which is something much darker, more contradictory,
-            more of a maelstrom of impulses and passions, of cruelty, ecstacy,
-            and madness, than is apparent to the civilized being who glides on
-            the surface and fits smoothly into the world.
-          </blockquote>
-
-          <cite className="block mt-4 text-xs font-bold text-right uppercase">
-            – Thomas Nagel
-          </cite>
+      />{" "}
+      <div>
+        <PageTitle title="About" />
+        <div className="mt-8 text-md">
+          <img src={shuffleLogo} className="mx-auto block" />
+          <div className="md:w-3/4 mx-auto w-11/12">
+            <p className="mt-8">
+              SHUFFLEは2012年4月に発足した同志社大学を拠点とした本格派スノーボード、フリースタイルスキー、スケートボードのサークルです。
+            </p>
+            <p className="mt-8">
+              夏は大阪キングスやスノーヴァ羽島などのオフトレ施設で貸切セッション、冬は月に１回のペースで全体の合宿その他イベントを行っています。
+            </p>
+            <div className="pj-img-outer p-2 mt-8">
+              <Image fluid={data.kings.childImageSharp.fluid} />
+            </div>
+            <div className="pj-img-outer p-2 mt-8">
+              <Image fluid={data.hashima.childImageSharp.fluid} />
+            </div>
+            <p className="my-8">
+              気になった方は是非、shuffleのsnsや代表のsnsにご連絡ください！
+            </p>
+          </div>
         </div>
-
-        <figure className="w-2/3 md:w-1/3">
-          <img alt="A dog relaxing" src={dogIllustration} />
-        </figure>
-      </section>
-    </Layout>
+      </div>
+    </PageLayout>
   );
-}
+};
+export const getImages = graphql`
+  {
+    kings: file(relativePath: { eq: "kings.jpg" }) {
+      childImageSharp {
+        fluid {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+    }
+    hashima: file(relativePath: { eq: "hashima.jpg" }) {
+      childImageSharp {
+        fluid {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+    }
+  }
+`;
 
 export default AboutPage;

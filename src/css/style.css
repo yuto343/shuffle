@@ -3,3 +3,59 @@
 @tailwind components;
 /*! purgecss end ignore */
 @tailwind utilities;
+.bg-pj-gray {
+  background-color: #828f98;
+}
+.pj-button {
+  box-shadow: -2px -2px 4px #95a4ae, 2px 2px 4px #616f79;
+  border-radius: 6px;
+  transition: 0.4s;
+}
+.pj-button:hover {
+  box-shadow: -1px -1px 2px #95a4ae, 1px 1px 2px #616f79;
+}
+.pj-button-icon {
+  box-shadow: -2px -2px 4px rgba(255, 255, 255, 0.25), 2px 2px 2px #616f79;
+  border-radius: 10px;
+  transition: 0.2s;
+}
+.pj-button-icon:hover {
+  box-shadow: -1px -1px 2px #95a4ae, 1px 1px 2px #616f79;
+}
+.pj-section-bar {
+  position: fixed;
+  height: calc(100vh - 80px);
+  width: 8px;
+  background: #828f98;
+  box-shadow: inset 2px 2px 4px rgba(255, 255, 255, 0.25),
+    inset -2px -2px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+}
+.pj-title-underber {
+  height: 8px;
+  background: #828f98;
+  box-shadow: inset 2px 2px 4px rgba(255, 255, 255, 0.25),
+    inset -2px -2px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  margin: 3px auto auto auto;
+}
+.pj-img-outer {
+  /* width: 85%; */
+  /* margin: 3% auto; */
+  background: #828f98;
+  box-shadow: inset -2px -2px 2px rgba(255, 255, 255, 0.2),
+    inset 2px 2px 2px rgba(97, 111, 121, 0.6);
+  border-radius: 10px;
+  text-align: center;
+}
+.pj-youtube {
+  padding-bottom: 50%;
+}
+.pj-sp-navbar {
+  box-shadow: inset 0px 5px 4px rgba(255, 255, 255, 0.25),
+    inset 1px -1px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px 10px 0 0;
+}
+.text-xxs {
+  font-size: 0.5rem;
+}

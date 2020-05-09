@@ -37,5 +37,30 @@ module.exports = {
       },
     },
     `gatsby-plugin-offline`,
+    `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`,
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: "image",
+        path: `${__dirname}/src/images/img`,
+      },
+    },
+    {
+      resolve: "gatsby-source-microcms",
+      options: {
+        apiKey: "a95ec86f-842b-4f7c-8d0c-f5d641d3da43",
+        serviceId: "shuffle",
+        endpoint: "lead-members",
+      },
+    },
+    {
+      resolve: "gatsby-source-microcms",
+      options: {
+        apiKey: "a95ec86f-842b-4f7c-8d0c-f5d641d3da43",
+        serviceId: "shuffle",
+        endpoint: "season-movies",
+      },
+    },
   ],
 };
