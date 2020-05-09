@@ -23,12 +23,12 @@ function movies() {
   return (
     <PageLayout>
       <PageTitle title="Season Movie!"></PageTitle>
-      <p className="text-sm mt-8 w-4/5 mx-auto">
+      <p className="text-sm mt-8  w-11/12 md:w-4/5 mx-auto">
         SHUFFLEは毎年シーズンのみんなの滑りをまとめたシーズンムービーを作ります。
         SHUFFLEメンバーはそこにかっこいい滑りを収めるため、互いに高めあいながら頑張っています。
         是非、SHUFFLEの滑りをご覧ください。
       </p>
-      <div className="w-4/6 mx-auto">
+      <div className="w-11/12 md:w-4/6 mx-auto">
         {movieList.map((movie, idx) => {
           return (
             <MovieCard
