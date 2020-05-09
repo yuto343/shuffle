@@ -5,9 +5,9 @@ const fullConfig = resolveConfig(tailwindConfig);
 
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Starter Tailwind`,
-    description: `Gatsby starter styled with Tailwind`,
-    author: `@taylorbryant`,
+    title: `Shuffle Snowboarding`,
+    description: `同志社大学を拠点に活動するスノーボードサークル「shuffle」の公式ウェブサイトです。`,
+    author: `@Yuto-Nakano`,
   },
   plugins: [
     `gatsby-plugin-eslint`,
@@ -60,6 +60,14 @@ module.exports = {
         apiKey: "a95ec86f-842b-4f7c-8d0c-f5d641d3da43",
         serviceId: "shuffle",
         endpoint: "season-movies",
+      },
+    },
+    {
+      resolve: "gatsby-source-microcms",
+      options: {
+        apiKey: "a95ec86f-842b-4f7c-8d0c-f5d641d3da43",
+        serviceId: "shuffle",
+        endpoint: "blogs",
       },
     },
   ],
