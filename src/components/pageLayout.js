@@ -14,7 +14,9 @@ function PageLayout({ children }) {
       <div className="md:w-1/4   items-center justify-center h-screen font-display hidden lg:flex">
         <div className="fixed text-center">
           <div>
-            <img className="block  mx-auto " src={shuffleLogo} />
+            <Link to="/">
+              <img className="block  mx-auto " src={shuffleLogo} />
+            </Link>
           </div>
           <nav>
             <ul className="w-40 mx-auto">
