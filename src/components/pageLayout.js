@@ -55,7 +55,7 @@ function PageLayout({ children }) {
           <img src={shuffleLogo} className="block mx-auto w-1/3 p-3" />
         </Link>
       </div>
-      <main className="mx-auto w-full p-4">{children}</main>
+      <main className="mx-auto w-full md:p-4">{children}</main>
       <div className="lg:hidden w-full h-16"></div>
     </div>
   );
