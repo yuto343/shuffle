@@ -42,7 +42,7 @@
 .pj-img-outer {
   /* width: 85%; */
   /* margin: 3% auto; */
-  background: #828f98;
+  /* background: #828f98; */
   box-shadow: inset -2px -2px 2px rgba(255, 255, 255, 0.2),
     inset 2px 2px 2px rgba(97, 111, 121, 0.6);
   border-radius: 10px;
@@ -58,4 +58,22 @@
 }
 .text-xxs {
   font-size: 0.5rem;
+}
+
+.pj-post-sentence a {
+  color: #ff8845;
+  text-decoration: underline;
+}
+.pj-post-sentence p {
+  color: #d6d6d6;
+}
+.pj-post-sentence h2 {
+  margin: 1.25rem auto;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+.pj-post-sentence h3 {
+  margin: 1.25rem auto;
+  font-size: 1.125rem;
+  font-weight: bold;
 }
