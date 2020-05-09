@@ -3,6 +3,7 @@ import PageLayout from "../components/pageLayout";
 import PageTitle from "../components/pageTitle";
 import MovieCard from "../components/movieCard";
 import { useStaticQuery, graphql } from "gatsby";
+import SEO from "../components/seo";
 const getData = graphql`
   {
     allMicrocmsSeasonMovies {
@@ -22,6 +23,10 @@ function movies() {
   console.log(movieList);
   return (
     <PageLayout>
+      <SEO
+        keywords={[`同志社大学`, `サークル`, `スノーボード`]}
+        title="Movies"
+      />
       <PageTitle title="Season Movie!"></PageTitle>
       <p className="text-sm mt-8  w-11/12 md:w-4/5 mx-auto">
         SHUFFLEは毎年シーズンのみんなの滑りをまとめたシーズンムービーを作ります。

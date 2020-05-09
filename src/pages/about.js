@@ -10,9 +10,9 @@ const AboutPage = () => {
   return (
     <PageLayout>
       <SEO
-        keywords={[`gatsby`, `tailwind`, `react`, `tailwindcss`]}
+        keywords={[`同志社大学`, `サークル`, `スノーボード`]}
         title="About"
-      />{" "}
+      />
       <div>
         <PageTitle title="About" />
         <div className="mt-8 text-md">
