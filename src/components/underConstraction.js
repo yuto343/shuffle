@@ -3,7 +3,7 @@ import { Link } from "gatsby";
 
 const underConstraction = () => {
   return (
-    <div className="min-h-screen justify-center items-center flex">
+    <div className="h-screen justify-center items-center flex">
       <div className="font-display  text-center">
         <p className="text-3xl">- !!! sorry !!! -</p>
         <p className="mt-8">this page is under constraction </p>
