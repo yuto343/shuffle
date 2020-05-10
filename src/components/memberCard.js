@@ -20,12 +20,14 @@ const memberCard = ({ name, image, sentence, instagram }) => {
     <Image
       fluid={defaultImage.defaultImage.childImageSharp.fluid}
       className="block rounded-lg w-full "
+      alt={`${name}`}
     />
   );
   if (image) {
     imageElement = (
       <img
         src={`${image}?fit=crop&w=480&h=480`}
+        alt={`${name}`}
         className="block rounded-lg w-full "
       />
     );
@@ -35,7 +37,11 @@ const memberCard = ({ name, image, sentence, instagram }) => {
   if (instagram) {
     instagramElement = (
       <a href={`https://www.instagram.com/${instagram}/`}>
-        <img className="pj-button-icon block p-2 mt-3" src={instagramLogo} />
+        <img
+          className="pj-button-icon block p-2 mt-3"
+          src={instagramLogo}
+          alt="instagramlogo"
+        />
       </a>
     );
   }

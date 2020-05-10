@@ -15,7 +15,11 @@ function PageLayout({ children }) {
         <div className="fixed text-center">
           <div>
             <Link to="/">
-              <img className="block  mx-auto " src={shuffleLogo} />
+              <img
+                className="block  mx-auto "
+                src={shuffleLogo}
+                alt="shufflelogo"
+              />
             </Link>
           </div>
           <nav>
@@ -54,7 +58,11 @@ function PageLayout({ children }) {
       </div>
       <div className="md:hidden w-full">
         <Link to="/">
-          <img src={shuffleLogo} className="block mx-auto w-1/3 p-3" />
+          <img
+            src={shuffleLogo}
+            className="block mx-auto w-1/3 p-3"
+            alt="shufflelogo"
+          />
         </Link>
       </div>
       <main className="mx-auto w-full md:p-4">{children}</main>

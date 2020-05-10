@@ -56,6 +56,7 @@ function IndexPage() {
         <Image
           fluid={imageData.file.childImageSharp.fluid}
           className="block md:w-1/5 w-1/2 mx-auto"
+          alt="shuffleLogo"
         />
         <p className="mt-1">- shuffle snowboarding official website -</p>
         <ul className="md:flex items-center justify-center mt-8 ">
@@ -81,7 +82,7 @@ function IndexPage() {
                 className="w-12 h-12 pj-button-icon flex justify-center items-center mx-4"
               >
                 <a className="" href={d.href}>
-                  <img className=" p-2" src={d.src} />
+                  <img className=" p-2" src={d.src} alt={d.name} />
                 </a>
               </li>
             );

@@ -17,6 +17,7 @@ const blogCard = ({ title, thumbnail, createdAt, blogsId }) => {
             <img
               className="rounded-t  block mx-auto"
               src={`${thumbnail}?fit=crop&w=800&h=400`}
+              alt="blogthumbnail"
             />
           ) : (
             ""

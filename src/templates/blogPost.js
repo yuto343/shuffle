@@ -18,7 +18,11 @@ const blogPost = ({ data }) => {
       <PageTitle title="blogs" />
       <div className="md:w-4/5 w-full pj-img-outer mx-auto mt-8 bg-gray-800 pj-post-sentence">
         {postData.thumbnail ? (
-          <img src={postData.thumbnail.url} className="rounded-t  block" />
+          <img
+            src={postData.thumbnail.url}
+            className="rounded-t  block"
+            alt="blogthumbnail"
+          />
         ) : (
           <div className="pt-1"></div>
         )}
