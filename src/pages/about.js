@@ -32,7 +32,10 @@ const AboutPage = () => {
               <Image fluid={data.kings.childImageSharp.fluid} alt="kings" />
             </div>
             <div className="pj-img-outer p-2 mt-8">
-              <Image fluid={data.hashima.childImageSharp.fluid} alt="hashima" />
+              <Image
+                fluid={data.gassyuku.childImageSharp.fluid}
+                alt="gassyuku"
+              />
             </div>
             <p className="my-8">
               気になった方は是非、shuffleのsnsや代表のsnsにご連絡ください！
@@ -52,7 +55,7 @@ export const getImages = graphql`
         }
       }
     }
-    hashima: file(relativePath: { eq: "gassyuku.jpg" }) {
+    gassyuku: file(relativePath: { eq: "gassyuku.jpg" }) {
       childImageSharp {
         fluid {
           ...GatsbyImageSharpFluid_withWebp
