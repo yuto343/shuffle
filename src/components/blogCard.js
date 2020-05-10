@@ -25,7 +25,7 @@ const blogCard = ({ title, thumbnail, createdAt, blogsId }) => {
           <time className="font-display text-right block p-2 tracking-wider">
             {formatDay(createdAt)}
           </time>
-          <h2 className="p-2 ">{title}</h2>
+          <h2 className="p-2 font-bold text-lg">{title}</h2>
         </Link>
       </div>
     </div>
