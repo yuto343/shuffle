@@ -49,24 +49,24 @@ module.exports = {
     {
       resolve: "gatsby-source-microcms",
       options: {
-        apiKey: "a95ec86f-842b-4f7c-8d0c-f5d641d3da43",
-        serviceId: "shuffle",
+        apiKey: "10073370-360b-4b5a-927a-ad8f9bb33b40",
+        serviceId: "shuffle-snow",
         endpoint: "lead-members",
       },
     },
     {
       resolve: "gatsby-source-microcms",
       options: {
-        apiKey: "a95ec86f-842b-4f7c-8d0c-f5d641d3da43",
-        serviceId: "shuffle",
+        apiKey: "10073370-360b-4b5a-927a-ad8f9bb33b40",
+        serviceId: "shuffle-snow",
         endpoint: "season-movies",
       },
     },
     {
       resolve: "gatsby-source-microcms",
       options: {
-        apiKey: "a95ec86f-842b-4f7c-8d0c-f5d641d3da43",
-        serviceId: "shuffle",
+        apiKey: "10073370-360b-4b5a-927a-ad8f9bb33b40",
+        serviceId: "shuffle-snow",
         endpoint: "blogs",
       },
     },
