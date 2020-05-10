@@ -1,13 +1,27 @@
 import React from "react";
-import { Link } from "gatsby";
+import { Link, useStaticQuery, graphql } from "gatsby";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
-import shuffleLogo from "../images/shuffle-logo.svg";
 import twitterLogo from "../images/logos/twitter.svg";
 import instagramLogo from "../images/logos/instagram.svg";
 import youtubeLogo from "../images/logos/youtube.svg";
+import Image from "gatsby-image";
+const getImage = graphql`
+  {
+    file(relativePath: { eq: "shufflenewlogo-white.png" }) {
+      id
+      childImageSharp {
+        fluid {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+    }
+  }
+`;
 
 function IndexPage() {
+  const imageData = useStaticQuery(getImage);
+  console.log(imageData);
   const links = [
     { name: "Blogs", href: "/blogs/" },
     { name: "About", href: "/about/" },
@@ -39,10 +53,9 @@ function IndexPage() {
       />
 
       <section className="text-center font-display tracking-widest md:text-md text-sm">
-        <img
-          alt="Cat and human sitting on a couch"
-          className="block md:w-1/5 w-1/2 mx-auto "
-          src={shuffleLogo}
+        <Image
+          fluid={imageData.file.childImageSharp.fluid}
+          className="block md:w-1/5 w-1/2 mx-auto"
         />
         <p className="mt-1">- shuffle snowboarding official website -</p>
         <ul className="md:flex items-center justify-center mt-8 ">
