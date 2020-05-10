@@ -52,7 +52,7 @@ export const getImages = graphql`
         }
       }
     }
-    hashima: file(relativePath: { eq: "hashima.jpg" }) {
+    hashima: file(relativePath: { eq: "gassyuku.jpg" }) {
       childImageSharp {
         fluid {
           ...GatsbyImageSharpFluid_withWebp
