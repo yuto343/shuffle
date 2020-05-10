@@ -36,11 +36,12 @@ function members() {
         <p className="font-display text-2xl text-center my-4">20-21</p>
         {memberList.map((d, idx) => {
           const instagram = d.node.instagram ? d.node.instagram : false;
+          const image = d.node.image ? d.node.image.url : false;
           return (
             <MemberCard
               key={idx}
               name={d.node.name}
-              image={d.node.image.url}
+              image={image}
               sentence={d.node.sentence}
               instagram={instagram}
             />

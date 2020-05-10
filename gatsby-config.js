@@ -47,6 +47,13 @@ module.exports = {
       },
     },
     {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: "image",
+        path: `${__dirname}/src/images`,
+      },
+    },
+    {
       resolve: "gatsby-source-microcms",
       options: {
         apiKey: "10073370-360b-4b5a-927a-ad8f9bb33b40",
