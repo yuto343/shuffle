@@ -13,7 +13,14 @@ const blogCard = ({ title, thumbnail, createdAt, blogsId }) => {
     <div className="md:w-3/5 w-11/12 mx-auto mt-8">
       <div className="pj-button">
         <Link to={`/blogs/${blogsId}`}>
-          {thumbnail ? <img className="rounded-t" src={thumbnail} /> : ""}
+          {thumbnail ? (
+            <img
+              className="rounded-t"
+              src={`${thumbnail}?fit=crop&w=800&h=400`}
+            />
+          ) : (
+            ""
+          )}
           <time className="font-display text-right block p-2 tracking-wider">
             {formatDay(createdAt)}
           </time>
