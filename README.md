@@ -1,6 +1,6 @@
 # Shuffle official website
-
-同志社大学を拠点に活動するスノーボードサークルshuffleの公式webサイトです。
+![image](https://user-images.githubusercontent.com/43196286/81503525-ffe94100-931e-11ea-8f79-54ff371d2245.png)
+同志社大学を拠点に活動するスノーボードサークルshuffleの公式webサイトです。  
 https://www.shuffle-snowboarding.style/
 
 
