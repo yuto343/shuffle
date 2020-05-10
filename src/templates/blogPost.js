@@ -3,6 +3,7 @@ import { graphql } from "gatsby";
 import PropTypes from "prop-types";
 import PageLayout from "../components/pageLayout";
 import PageTitle from "../components/pageTitle";
+import SEO from "../components/seo";
 
 const blogPost = ({ data }) => {
   const postData = data.microcmsBlogs;
@@ -16,6 +17,10 @@ const blogPost = ({ data }) => {
   return (
     <PageLayout>
       <PageTitle title="blogs" />
+      <SEO
+        keywords={[`同志社大学`, `サークル`, `スノーボード`]}
+        title={postData.title}
+      />
       <div className="md:w-4/5 w-full pj-img-outer mx-auto mt-8 bg-gray-800 pj-post-sentence">
         {postData.thumbnail ? (
           <img
