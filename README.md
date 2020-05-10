@@ -34,5 +34,5 @@ npm run dev
   tailwindcssで補えない分のスタイルは./src/css/style.cssにあります。
   そのほかは基本的に普通のgatsbyjsで作るサイトです。
 
-- headlessCMSにはmicroCmsを用いているのでgatsby-source-microcms(https://www.gatsbyjs.org/packages/gatsby-source-microcms/)プラグインを使用しています。
+- headlessCMSにはmicroCmsを用いているのでgatsby-source-microcms(https://www.gatsbyjs.org/packages/gatsby-source-microcms) プラグインを使用しています。
 
