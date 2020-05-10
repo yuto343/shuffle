@@ -23,7 +23,12 @@ const memberCard = ({ name, image, sentence, instagram }) => {
     />
   );
   if (image) {
-    imageElement = <img src={image} className="block rounded-lg w-full " />;
+    imageElement = (
+      <img
+        src={`${image}?fit=crop&w=480&h=480`}
+        className="block rounded-lg w-full "
+      />
+    );
   }
 
   let instagramElement = "";
