@@ -144,3 +144,9 @@
   padding: 1.125rem 0 1.125rem 10px;
   border-left: 5px solid orange;
 }
+
+.pj-post-sentence img {
+  margin: 0 auto;
+  display: block;
+  max-height: 400px;
+}
