@@ -15,7 +15,7 @@ const blogCard = ({ title, thumbnail, createdAt, blogsId }) => {
         <Link to={`/blogs/${blogsId}`}>
           {thumbnail ? (
             <img
-              className="rounded-t"
+              className="rounded-t  block mx-auto"
               src={`${thumbnail}?fit=crop&w=800&h=400`}
             />
           ) : (
