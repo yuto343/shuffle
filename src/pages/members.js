@@ -17,6 +17,7 @@ const getData = graphql`
           name
           sentence
           instagram
+          leader
         }
       }
     }
@@ -25,6 +26,15 @@ const getData = graphql`
 function members() {
   const data = useStaticQuery(getData);
   const memberList = data.allMicrocmsLeadMembers.edges;
+  const leadMemberList = data.allMicrocmsLeadMembers.edges.filter((member) => {
+    return member.node.leader === true;
+  });
+  const otherMemberList = data.allMicrocmsLeadMembers.edges.filter((member) => {
+    return member.node.leader === false;
+  });
+  console.log(memberList);
+  console.log(otherMemberList);
+  console.log(leadMemberList);
   return (
     <PageLayout>
       <PageTitle title="Members" />
@@ -33,8 +43,28 @@ function members() {
         title="Members"
       />
       <div>
-        <p className="font-display text-2xl text-center my-4">20-21</p>
-        {memberList.map((d, idx) => {
+        <p className="font-display text-2xl text-center my-4">
+          [20-21] LaedMembers!
+        </p>
+        {leadMemberList.map((d, idx) => {
+          const instagram = d.node.instagram ? d.node.instagram : false;
+          const image = d.node.image ? d.node.image.url : false;
+          return (
+            <MemberCard
+              key={idx}
+              name={d.node.name}
+              image={image}
+              sentence={d.node.sentence}
+              instagram={instagram}
+            />
+          );
+        })}
+      </div>
+      <div>
+        <p className="font-display text-2xl text-center mt-12 mb-10">
+          - Other Members -
+        </p>
+        {otherMemberList.map((d, idx) => {
           const instagram = d.node.instagram ? d.node.instagram : false;
           const image = d.node.image ? d.node.image.url : false;
           return (
