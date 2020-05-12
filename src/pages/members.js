@@ -25,16 +25,12 @@ const getData = graphql`
 `;
 function members() {
   const data = useStaticQuery(getData);
-  const memberList = data.allMicrocmsLeadMembers.edges;
   const leadMemberList = data.allMicrocmsLeadMembers.edges.filter((member) => {
     return member.node.leader === true;
   });
   const otherMemberList = data.allMicrocmsLeadMembers.edges.filter((member) => {
     return member.node.leader === false;
   });
-  console.log(memberList);
-  console.log(otherMemberList);
-  console.log(leadMemberList);
   return (
     <PageLayout>
       <PageTitle title="Members" />
