@@ -36,7 +36,7 @@ const blogPost = ({ data }) => {
         <h1 className="text-xl mt-8 py-2 font-bold text-left px-4">
           {postData.title}
         </h1>
-        <time className="font-display block mt-4 text-xl tracking-wider">
+        <time className="font-display block mt-4 text-xl tracking-wider text-white">
           {formatDay(postData.createdAt)}
         </time>
         <div

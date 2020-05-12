@@ -52,7 +52,7 @@ const memberCard = ({ name, image, sentence, instagram }) => {
         {imageElement}
         {instagramElement}
       </div>
-      <div className="md:w-4/5  md:ml-3 w-11/12 mx-auto ">
+      <div className="md:w-4/5  md:ml-3 p-1 mx-auto ">
         <p className="font-display text-xl tracking-widest  text-center md:text-left">
           {name}
         </p>
