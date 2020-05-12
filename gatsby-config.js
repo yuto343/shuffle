@@ -21,7 +21,7 @@ module.exports = {
         background_color: fullConfig.theme.colors.white,
         theme_color: fullConfig.theme.colors.teal["400"],
         display: `minimal-ui`,
-        icon: `src/images/icon.png`,
+        icon: `src/images/elements/icon.png`,
       },
     },
     {
@@ -50,7 +50,7 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: "elements",
-        path: `${__dirname}/src/elements`,
+        path: `${__dirname}/src/images/elements`,
       },
     },
     {

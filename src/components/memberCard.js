@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import instagramLogo from "../images/logos/instagram.svg";
+import instagramLogo from "../images/elements/instagram.svg";
 import { graphql, useStaticQuery } from "gatsby";
 import Image from "gatsby-image";
 const getImage = graphql`

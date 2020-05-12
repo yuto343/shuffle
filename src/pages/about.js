@@ -1,6 +1,6 @@
 import React from "react";
 import PageLayout from "../components/pageLayout";
-import shuffleLogo from "../images/shuffle-logo.svg";
+import shuffleLogo from "../images/elements/shuffle-logo.svg";
 import { graphql, useStaticQuery } from "gatsby";
 import SEO from "../components/seo";
 import Image from "gatsby-image";
@@ -38,6 +38,18 @@ const AboutPage = () => {
                 alt="gassyuku"
               />
             </div>
+            <div className="pj-img-outer p-2 mt-8">
+              <Image
+                fluid={data.natsugassyuku.childImageSharp.fluid}
+                alt="natsugassyuku"
+              />
+            </div>
+            <div className="pj-img-outer p-2 mt-8">
+              <Image
+                fluid={data.nomikai.childImageSharp.fluid}
+                alt="natsugassyuku"
+              />
+            </div>
             <p className="my-8">
               気になった方は是非、shuffleのsnsや代表のsnsにご連絡ください！
             </p>
@@ -57,6 +69,20 @@ export const getImages = graphql`
       }
     }
     gassyuku: file(relativePath: { eq: "gassyuku.jpg" }) {
+      childImageSharp {
+        fluid {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+    }
+    natsugassyuku: file(relativePath: { eq: "natsugassyuku.jpg" }) {
+      childImageSharp {
+        fluid {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+    }
+    nomikai: file(relativePath: { eq: "nomikai.jpg" }) {
       childImageSharp {
         fluid {
           ...GatsbyImageSharpFluid_withWebp

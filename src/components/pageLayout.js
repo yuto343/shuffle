@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import React from "react";
 import { Link } from "gatsby";
-import shuffleLogo from "../images/shuffle-logo.svg";
+import shuffleLogo from "../images/elements/shuffle-logo.svg";
 function PageLayout({ children }) {
   const links = [
     { name: "Blogs", href: "/blogs/" },

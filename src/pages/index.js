@@ -2,14 +2,13 @@ import React from "react";
 import { Link, useStaticQuery, graphql } from "gatsby";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
-import twitterLogo from "../images/logos/twitter.svg";
-import instagramLogo from "../images/logos/instagram.svg";
-import youtubeLogo from "../images/logos/youtube.svg";
+import twitterLogo from "../images/elements/twitter.svg";
+import instagramLogo from "../images/elements/instagram.svg";
+import youtubeLogo from "../images/elements/youtube.svg";
 import Image from "gatsby-image";
 const getImage = graphql`
   {
     file(relativePath: { eq: "shufflenewlogo-white.png" }) {
-      id
       childImageSharp {
         fluid {
           ...GatsbyImageSharpFluid_withWebp
