@@ -42,15 +42,15 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: "image",
-        path: `${__dirname}/src/images/img`,
+        name: "pictures",
+        path: `${__dirname}/src/images/pictures`,
       },
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: "image",
-        path: `${__dirname}/src/images`,
+        name: "elements",
+        path: `${__dirname}/src/elements`,
       },
     },
     {
