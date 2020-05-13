@@ -7,7 +7,6 @@ import Image from "gatsby-image";
 import PageTitle from "../components/pageTitle";
 const AboutPage = () => {
   const data = useStaticQuery(getImages);
-  console.log(data);
   return (
     <PageLayout>
       <SEO
