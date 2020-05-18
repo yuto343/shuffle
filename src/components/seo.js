@@ -11,18 +11,20 @@ function SEO({ description, lang, meta, keywords, title }) {
           title
           description
           author
+          siteUrl
         }
       }
     }
   `);
 
   const metaDescription = description || site.siteMetadata.description;
-
+  const defaultTitle = "Shuffle-Snowboarding";
   return (
     <Helmet
       htmlAttributes={{
         lang,
       }}
+      defaultTitle={defaultTitle}
       meta={[
         {
           name: `description`,
@@ -30,11 +32,15 @@ function SEO({ description, lang, meta, keywords, title }) {
         },
         {
           property: `og:title`,
-          content: title,
+          content: title || defaultTitle,
         },
         {
           property: `og:description`,
           content: metaDescription,
+        },
+        {
+          property: `og:image`,
+          content: `${site.siteMetadata.siteUrl}/members-default-thumbnail.jpg`,
         },
         {
           property: `og:type`,

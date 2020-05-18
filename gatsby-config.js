@@ -8,6 +8,8 @@ module.exports = {
     title: `Shuffle Snowboarding`,
     description: `同志社大学を拠点に活動するスノーボードサークル「shuffle」の公式ウェブサイトです。`,
     author: `@Yuto-Nakano`,
+    siteUrl: "https://shuffle-snowboarding.style",
+    image: "src/images/elements/icon.png",
   },
   plugins: [
     `gatsby-plugin-eslint`,
@@ -15,7 +17,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `shuffle-snowbarding`,
+        name: `shuffle-snowboarding`,
         short_name: `shuffle`,
         start_url: `/`,
         background_color: fullConfig.theme.colors.white,
