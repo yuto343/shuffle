@@ -40,7 +40,7 @@ function members() {
       />
       <div>
         <p className="font-display text-2xl text-center my-4">
-          [20-21] LaedMembers!
+          [20-21] LeadMembers!
         </p>
         {leadMemberList.map((d, idx) => {
           const instagram = d.node.instagram ? d.node.instagram : false;
