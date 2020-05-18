@@ -21,12 +21,12 @@ type MicroCMSWebhookRequestBody struct {
 func webhookHandler(w http.ResponseWriter, req *http.Request) {
 	// リクエストをバリデートする
 	if req.Method != "POST" {
-		log.Fatal("error: invalid request method")
+		log.Println("error: invalid request method")
 		w.WriteHeader(http.StatusBadRequest)
 		return
 	}
 	if req.Header.Get("Content-Type") != "application/json" {
-		log.Fatal("error: Invalid request content type")
+		log.Println("error: Invalid request content type")
 		w.WriteHeader(http.StatusBadRequest)
 		return
 	}
