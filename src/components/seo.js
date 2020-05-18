@@ -32,7 +32,7 @@ function SEO({ description, lang, meta, keywords, title }) {
         },
         {
           property: `og:title`,
-          content: title || defaultTitle,
+          content: `${title} | ${defaultTitle}` || defaultTitle,
         },
         {
           property: `og:description`,
@@ -56,7 +56,7 @@ function SEO({ description, lang, meta, keywords, title }) {
         },
         {
           name: `twitter:title`,
-          content: title,
+          content: `${title} | ${defaultTitle}`,
         },
         {
           name: `twitter:description`,
