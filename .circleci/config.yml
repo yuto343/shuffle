@@ -1,0 +1,13 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/golang:1.13
+    working_directory: /go/src/github.com/Yuto-Nakano/shuffle
+    steps:
+      - checkout
+      - run: cd webhook_server && go get -v -d
+      - run: cd webhook_server && go test -v
+      - run: cd webhook_server && ls
+      - run: cd webhook_server && pwd
+      - run: cd webhook_server && go run main.go 3000
