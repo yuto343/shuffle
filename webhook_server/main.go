@@ -31,9 +31,12 @@ func webhookHandler(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 
+	// TODO: responseが5分返ってこないのはよくないので、リクエストが来たらジョブキューにいれるなどしてレスポンスを返す実装にするとよさそう
+	time.Sleep(5 * time.Minute) // 記事が実際にデプロイされるまで3分程度かかるためスリープする
+
 	body, err := ioutil.ReadAll(req.Body)
 	if err != nil {
-		log.Fatal(err)
+		log.Println(err)
 		w.WriteHeader(http.StatusInternalServerError)
 		return
 	}
@@ -41,14 +44,26 @@ func webhookHandler(w http.ResponseWriter, req *http.Request) {
 
 	microCMSWebhookRequestBody := MicroCMSWebhookRequestBody{}
 	if err := json.Unmarshal(body, &microCMSWebhookRequestBody); err != nil {
-		log.Fatal(err)
+		log.Println(err)
+		w.WriteHeader(http.StatusInternalServerError)
+		return
 	}
 
 	// TODO: MicroCMSのAPIを叩き最新記事情報を取得する
 	// TODO: 短時間に連投された記事を見分けられたりすると尚良い
+	req, _ := http.NewRequest("GET", "https://shuffle-snow.microcms.io/api/v1/blogs", nil)
+	req.Header.Set("X-API-KEY", os.Getenv("MICROCMS_API_KEY"))
 
-	// TODO: responseが5分返ってこないのはよくないので、リクエストが来たらジョブキューにいれるなどしてレスポンスを返す実装にするとよさそう
-	time.Sleep(5 * time.Minute) // 記事が実際にデプロイされるまで3分程度かかるためスリープする
+	client := new(http.Client)
+	resp, err := client.Do(req)
+
+	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		log.Println(err)
+		w.WriteHeader(http.StatusInternalServerError)
+		return
+	}
+	defer resp.Body.Close()
 
 	// TODO: Twitter APIを叩き、ブログ記事についてのツイートする
 }
