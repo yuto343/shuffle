@@ -9,8 +9,6 @@ function postpreview() {
   const contentId = queryParams.contentId;
   const draftKey = queryParams.draftKey;
   let [postData, setPostData] = useState(null);
-  console.log(queryParams);
-  console.log(contentId);
   const formatDay = function (date) {
     const dateObj = new Date(date);
     const year = dateObj.getFullYear();
@@ -48,10 +46,10 @@ function postpreview() {
       <SEO
         keywords={[`同志社大学`, `サークル`, `スノーボード`]}
         title={postData ? postData.title : ""}
-        image={postData ? postData.thumbnail.url : false}
+        image={postData && postData.thumbnail ? postData.thumbnail.url : false}
       />
       <div className="md:w-4/5 w-full pj-img-outer mx-auto mt-8 bg-gray-800 pj-post-sentence">
-        {postData ? (
+        {postData && postData.thumbnail ? (
           <img
             src={postData.thumbnail.url}
             className="rounded-t  block"

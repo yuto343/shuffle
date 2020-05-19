@@ -92,7 +92,7 @@ SEO.propTypes = {
   lang: PropTypes.string,
   meta: PropTypes.array,
   title: PropTypes.string.isRequired,
-  image: PropTypes.string,
+  image: PropTypes.any,
 };
 
 export default SEO;
