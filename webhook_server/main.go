@@ -10,6 +10,7 @@ import (
 	"time"
 
 	"github.com/ChimeraCoder/anaconda"
+	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 )
 
@@ -28,45 +29,45 @@ type MicroCMSBlogResponse struct {
 	Sentence  string    `json:"sentence"`
 }
 
-func webhookHandler(w http.ResponseWriter, req *http.Request) {
+func webhookHandler(c *gin.Context) {
 	// リクエストをバリデートする
-	if req.Method != "POST" {
+	if c.Request.Method != "POST" {
 		log.Println("error: invalid request method")
-		w.WriteHeader(http.StatusBadRequest)
+		c.Status(http.StatusBadRequest)
 		return
 	}
-	if req.Header.Get("Content-Type") != "application/json" {
+	if c.Request.Header.Get("Content-Type") != "application/json" {
 		log.Println("error: invalid request content type")
-		w.WriteHeader(http.StatusBadRequest)
+		c.Status(http.StatusBadRequest)
 		return
 	}
 
 	// TODO: responseが5分返ってこないのはよくないので、リクエストが来たらジョブキューにいれるなどしてレスポンスを返す実装にするとよさそう
 	// time.Sleep(5 * time.Minute) // 記事が実際にデプロイされるまで3分程度かかるためスリープする
 
-	body, err := ioutil.ReadAll(req.Body)
+	body, err := ioutil.ReadAll(c.Request.Body)
 	if err != nil {
 		log.Println(err)
-		w.WriteHeader(http.StatusInternalServerError)
+		c.Status(http.StatusInternalServerError)
 		return
 	}
-	defer req.Body.Close()
+	defer c.Request.Body.Close()
 
 	microCMSWebhookRequestBody := MicroCMSWebhookRequestBody{}
 	if err := json.Unmarshal(body, &microCMSWebhookRequestBody); err != nil {
 		log.Println(err)
-		w.WriteHeader(http.StatusInternalServerError)
+		c.Status(http.StatusInternalServerError)
 		return
 	}
 
 	if microCMSWebhookRequestBody.Type != "new" {
 		log.Println("error: invalid webhook type")
-		w.WriteHeader(http.StatusInternalServerError)
+		c.Status(http.StatusInternalServerError)
 		return
 	}
 
 	fmt.Println(microCMSWebhookRequestBody)
-	w.WriteHeader(http.StatusOK)
+	c.Status(http.StatusOK)
 	return
 
 	// MicroCMS側が最新のブログ記事を返すようになるまでしばらく時間がかかる
@@ -81,7 +82,7 @@ func webhookHandler(w http.ResponseWriter, req *http.Request) {
 	blogBody, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
 		log.Println(err)
-		w.WriteHeader(http.StatusInternalServerError)
+		c.Status(http.StatusInternalServerError)
 		return
 	}
 	defer resp.Body.Close()
@@ -89,7 +90,7 @@ func webhookHandler(w http.ResponseWriter, req *http.Request) {
 	microCMSBlogResponse := MicroCMSBlogResponse{}
 	if err := json.Unmarshal(blogBody, &microCMSBlogResponse); err != nil {
 		log.Println(err)
-		w.WriteHeader(http.StatusInternalServerError)
+		c.Status(http.StatusInternalServerError)
 		return
 	}
 
@@ -102,13 +103,12 @@ func webhookHandler(w http.ResponseWriter, req *http.Request) {
 	tweet, err := api.PostTweet(tweetContent, nil)
 	if err != nil {
 		log.Println(err)
-		w.WriteHeader(http.StatusInternalServerError)
+		c.Status(http.StatusInternalServerError)
 		return
 	}
 	fmt.Println(tweet.Text)
 
-	w.WriteHeader(http.StatusOK)
-	return
+	c.Status(http.StatusOK)
 }
 
 func getTwitterApi() *anaconda.TwitterApi {
@@ -129,10 +129,11 @@ func main() {
 	// loadEnv()
 	port := os.Getenv("PORT")
 	if port == "" {
-		log.Fatal("$PORT must be set")
+		log.Fatal("ENV $PORT must be set")
 	}
 
-	fmt.Printf("Starting server at Port %d", port)
-	http.HandleFunc("/microcms_webhook", webhookHandler)
-	http.ListenAndServe(port, nil)
+	router := gin.New()
+	router.Use(gin.Logger())
+	router.POST("/microcms_webhook", webhookHandler)
+	router.Run(":" + port)
 }
