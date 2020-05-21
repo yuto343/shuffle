@@ -125,7 +125,8 @@ func loadEnv() {
 }
 
 func main() {
-	loadEnv()
+	// productionではheroku-configで設定する
+	// loadEnv()
 	port := os.Getenv("PORT")
 	if port == "" {
 		log.Fatal("$PORT must be set")
