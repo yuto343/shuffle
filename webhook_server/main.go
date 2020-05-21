@@ -7,7 +7,6 @@ import (
 	"log"
 	"net/http"
 	"os"
-	"strconv"
 	"time"
 
 	"github.com/ChimeraCoder/anaconda"
@@ -43,7 +42,7 @@ func webhookHandler(w http.ResponseWriter, req *http.Request) {
 	}
 
 	// TODO: responseが5分返ってこないのはよくないので、リクエストが来たらジョブキューにいれるなどしてレスポンスを返す実装にするとよさそう
-	time.Sleep(5 * time.Minute) // 記事が実際にデプロイされるまで3分程度かかるためスリープする
+	// time.Sleep(5 * time.Minute) // 記事が実際にデプロイされるまで3分程度かかるためスリープする
 
 	body, err := ioutil.ReadAll(req.Body)
 	if err != nil {
@@ -65,6 +64,10 @@ func webhookHandler(w http.ResponseWriter, req *http.Request) {
 		w.WriteHeader(http.StatusInternalServerError)
 		return
 	}
+
+	fmt.Println(microCMSWebhookRequestBody)
+	w.WriteHeader(http.StatusOK)
+	return
 
 	// MicroCMS側が最新のブログ記事を返すようになるまでしばらく時間がかかる
 	time.Sleep(5 * time.Second)
@@ -123,8 +126,12 @@ func loadEnv() {
 
 func main() {
 	loadEnv()
-	port, _ := strconv.Atoi(os.Args[1])
+	port := os.Getenv("PORT")
+	if port == "" {
+		log.Fatal("$PORT must be set")
+	}
+
 	fmt.Printf("Starting server at Port %d", port)
 	http.HandleFunc("/microcms_webhook", webhookHandler)
-	http.ListenAndServe(fmt.Sprintf(":%d", port), nil)
+	http.ListenAndServe(port, nil)
 }
