@@ -31,11 +31,6 @@ type MicroCMSBlogResponse struct {
 
 func webhookHandler(c *gin.Context) {
 	// リクエストをバリデートする
-	if c.Request.Method != "POST" {
-		log.Println("error: invalid request method")
-		c.Status(http.StatusBadRequest)
-		return
-	}
 	if c.Request.Header.Get("Content-Type") != "application/json" {
 		log.Println("error: invalid request content type")
 		c.Status(http.StatusBadRequest)
