@@ -33,37 +33,28 @@ func webhookHandler(c *gin.Context) {
 	// リクエストをバリデートする
 	if c.Request.Header.Get("Content-Type") != "application/json" {
 		log.Println("error: invalid request content type")
-		c.Status(http.StatusBadRequest)
+		c.JSON(http.StatusBadRequest, gin.H{"status": "Bad Request"})
 		return
 	}
 
 	// TODO: responseが5分返ってこないのはよくないので、リクエストが来たらジョブキューにいれるなどしてレスポンスを返す実装にするとよさそう
 	// time.Sleep(5 * time.Minute) // 記事が実際にデプロイされるまで3分程度かかるためスリープする
-
-	body, err := ioutil.ReadAll(c.Request.Body)
-	if err != nil {
-		log.Println(err)
-		c.Status(http.StatusInternalServerError)
-		return
-	}
-	defer c.Request.Body.Close()
-
 	microCMSWebhookRequestBody := MicroCMSWebhookRequestBody{}
-	if err := json.Unmarshal(body, &microCMSWebhookRequestBody); err != nil {
-		log.Println(err)
-		c.Status(http.StatusInternalServerError)
+	if err := c.Bind(&microCMSWebhookRequestBody); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"status": "Bad Request"})
 		return
 	}
-
 	if microCMSWebhookRequestBody.Type != "new" {
 		log.Println("error: invalid webhook type")
-		c.Status(http.StatusInternalServerError)
+		c.JSON(http.StatusBadRequest, gin.H{"status": "Bad Request"})
 		return
 	}
 
+	// TODO: 以下を消す
 	fmt.Println(microCMSWebhookRequestBody)
-	c.Status(http.StatusOK)
+	c.JSON(http.StatusOK, gin.H{"status": "OK"})
 	return
+	// ここまで
 
 	// MicroCMS側が最新のブログ記事を返すようになるまでしばらく時間がかかる
 	time.Sleep(5 * time.Second)
@@ -77,7 +68,7 @@ func webhookHandler(c *gin.Context) {
 	blogBody, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
 		log.Println(err)
-		c.Status(http.StatusInternalServerError)
+		c.JSON(http.StatusInternalServerError, gin.H{"status": "Internal Server Error"})
 		return
 	}
 	defer resp.Body.Close()
@@ -85,7 +76,7 @@ func webhookHandler(c *gin.Context) {
 	microCMSBlogResponse := MicroCMSBlogResponse{}
 	if err := json.Unmarshal(blogBody, &microCMSBlogResponse); err != nil {
 		log.Println(err)
-		c.Status(http.StatusInternalServerError)
+		c.JSON(http.StatusInternalServerError, gin.H{"status": "Internal Server Error"})
 		return
 	}
 
@@ -103,7 +94,7 @@ func webhookHandler(c *gin.Context) {
 	}
 	fmt.Println(tweet.Text)
 
-	c.Status(http.StatusOK)
+	c.JSON(http.StatusOK, gin.H{"status": "OK"})
 }
 
 func getTwitterApi() *anaconda.TwitterApi {
