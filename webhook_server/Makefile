@@ -16,7 +16,7 @@ build: deps
 ## Run binary
 .PHONY: run
 run: build
-	./main
+	PORT=3000 ./main
 
 ## Clean binary
 .PHONY: clean
