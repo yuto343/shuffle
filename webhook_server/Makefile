@@ -16,7 +16,7 @@ build: deps
 ## Run binary
 .PHONY: run
 run: build
-	PORT=3000 ./main
+	export $(cat .env | grep -v ^# | xargs); PORT=3000 ./main
 
 ## Clean binary
 .PHONY: clean
