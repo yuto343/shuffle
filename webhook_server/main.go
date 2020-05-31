@@ -40,15 +40,15 @@ func webhookHandler(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"status": "Bad Request"})
 		return
 	}
+	log.Println(microCMSWebhookRequestBody)
+
 	if microCMSWebhookRequestBody.Type != "new" {
-		log.Println("error: invalid webhook type")
+		log.Printf("error: invalid webhook type")
 		c.JSON(http.StatusBadRequest, gin.H{"status": "Bad Request"})
 		return
 	}
 
-	// TODO: responseが5分返ってこないのはよくないので、リクエストが来たらジョブキューにいれるなどしてレスポンスを返す実装にするとよさそう
-	time.Sleep(5 * time.Minute) // 記事が実際にデプロイされるまで3分程度かかるためスリープする
-
+	time.Sleep(10 * time.Second) // APIで取得できるまで若干ラグがある
 	blogReq, _ := http.NewRequest("GET", "https://shuffle-snow.microcms.io/api/v1/blogs/"+microCMSWebhookRequestBody.Id, nil)
 	blogReq.Header.Set("X-API-KEY", os.Getenv("X_API_KEY"))
 
@@ -69,10 +69,15 @@ func webhookHandler(c *gin.Context) {
 		c.JSON(http.StatusInternalServerError, gin.H{"status": "Internal Server Error"})
 		return
 	}
+	log.Println(microCMSBlogResponse)
 
 	tweetContent := "新しい記事が投稿されました #shuffle_snowboarding\n"
 	tweetContent += microCMSBlogResponse.Title + " - @shuffle_DU\n"
 	tweetContent += "https://www.shuffle-snowboarding.style/blogs/" + microCMSBlogResponse.Id
+	log.Println(tweetContent)
+
+	// TODO: responseが5分返ってこないのはよくないので、リクエストが来たらジョブキューにいれるなどしてレスポンスを返す実装にするとよさそう
+	time.Sleep(5 * time.Minute) // 記事が実際にデプロイされるまで3分程度かかるためスリープする
 
 	api := getTwitterApi()
 	tweet, err := api.PostTweet(tweetContent, nil)
