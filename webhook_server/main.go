@@ -2,7 +2,6 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -36,8 +35,6 @@ func webhookHandler(c *gin.Context) {
 		return
 	}
 
-	// TODO: responseが5分返ってこないのはよくないので、リクエストが来たらジョブキューにいれるなどしてレスポンスを返す実装にするとよさそう
-	// time.Sleep(5 * time.Minute) // 記事が実際にデプロイされるまで3分程度かかるためスリープする
 	microCMSWebhookRequestBody := MicroCMSWebhookRequestBody{}
 	if err := c.Bind(&microCMSWebhookRequestBody); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"status": "Bad Request"})
@@ -49,14 +46,8 @@ func webhookHandler(c *gin.Context) {
 		return
 	}
 
-	// TODO: 以下を消す
-	fmt.Println(microCMSWebhookRequestBody)
-	c.JSON(http.StatusOK, gin.H{"status": "OK"})
-	return
-	// ここまで
-
-	// MicroCMS側が最新のブログ記事を返すようになるまでしばらく時間がかかる
-	time.Sleep(5 * time.Second)
+	// TODO: responseが5分返ってこないのはよくないので、リクエストが来たらジョブキューにいれるなどしてレスポンスを返す実装にするとよさそう
+	time.Sleep(5 * time.Minute) // 記事が実際にデプロイされるまで3分程度かかるためスリープする
 
 	blogReq, _ := http.NewRequest("GET", "https://shuffle-snow.microcms.io/api/v1/blogs/"+microCMSWebhookRequestBody.Id, nil)
 	blogReq.Header.Set("X-API-KEY", os.Getenv("X_API_KEY"))
@@ -83,7 +74,6 @@ func webhookHandler(c *gin.Context) {
 	tweetContent += microCMSBlogResponse.Title + " - @shuffle_DU\n"
 	tweetContent += "https://www.shuffle-snowboarding.style/blogs/" + microCMSBlogResponse.Id
 
-	// TODO: Twitter APIを叩き、ブログ記事についてのツイートする
 	api := getTwitterApi()
 	tweet, err := api.PostTweet(tweetContent, nil)
 	if err != nil {
@@ -91,7 +81,7 @@ func webhookHandler(c *gin.Context) {
 		c.Status(http.StatusInternalServerError)
 		return
 	}
-	fmt.Println(tweet.Text)
+	log.Println(tweet.Text)
 
 	c.JSON(http.StatusOK, gin.H{"status": "OK"})
 }
