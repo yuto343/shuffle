@@ -31,7 +31,7 @@ npm run dev
 
 Netlify を複数人で扱うには課金が必要なため、Heroku 上に MicroCMS からの Webhook を受けるサーバーを立ち上げる。
 `/webhook_server`に対象のソースコードはある。
-Netlify で新着記事をビルドしデプロイする時に同時に TwitterAPI を叩けばより簡単にできる。
+TODO: Netlify で新着記事をビルドしデプロイする時に同時に TwitterAPI を叩けばより簡単にできる。
 
 `.env`を埋める。環境変数は担当者に聞いてください。
 
@@ -50,6 +50,8 @@ $ heroku config:push
 
 // サブディレクトリをHerokuにpushする
 $ git subtree push --prefix webhook_server/ heroku master
+// subtree pushには-fがないのでforce pushしたい場合は以下
+$ git push heroku `git subtree split --prefix webhook_server/ master`:master --force
 ```
 
 ### 開発においての留意事項
