@@ -41,7 +41,7 @@ func webhookHandler(c *gin.Context) {
 		return
 	}
 	if microCMSWebhookRequestBody.Type != "new" {
-		log.Println("error: invalid webhook type")
+		log.Printf("error: invalid webhook type. %s is not type new", microCMSWebhookRequestBody.Type)
 		c.JSON(http.StatusBadRequest, gin.H{"status": "Bad Request"})
 		return
 	}
