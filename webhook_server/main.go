@@ -11,7 +11,6 @@ import (
 
 	"github.com/ChimeraCoder/anaconda"
 	"github.com/gin-gonic/gin"
-	"github.com/joho/godotenv"
 )
 
 type MicroCMSWebhookRequestBody struct {
@@ -103,16 +102,7 @@ func getTwitterApi() *anaconda.TwitterApi {
 	return anaconda.NewTwitterApi(os.Getenv("ACCESS_TOKEN_KEY"), os.Getenv("ACCESS_TOKEN_SECRET"))
 }
 
-func loadEnv() {
-	err := godotenv.Load()
-	if err != nil {
-		log.Fatal("Error loading .env file")
-	}
-}
-
 func main() {
-	// productionではheroku-configで設定する
-	// loadEnv()
 	port := os.Getenv("PORT")
 	if port == "" {
 		log.Fatal("ENV $PORT must be set")
