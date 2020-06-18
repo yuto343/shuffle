@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "gatsby";
+import ImageContainer from "./ImageContainer";
 const blogCard = ({ title, thumbnail, createdAt, blogsId }) => {
   const formatDay = function (date) {
     const dateObj = new Date(date);
@@ -14,11 +15,9 @@ const blogCard = ({ title, thumbnail, createdAt, blogsId }) => {
       <div className="pj-button">
         <Link to={`/blogs/${blogsId}`}>
           {thumbnail ? (
-            <img
-              className="rounded-t  block mx-auto"
-              src={`${thumbnail}?fit=crop&w=800&h=400`}
-              alt="blogthumbnail"
-            />
+            <div className="rounded-t block mx-auto ">
+              <ImageContainer imageUrl={thumbnail} />
+            </div>
           ) : (
             ""
           )}
