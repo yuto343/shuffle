@@ -4,21 +4,26 @@ import (
 	"net/http"
 	"net/http/httptest"
 	"testing"
+
+	"github.com/gin-gonic/gin"
 )
 
 func TestWebhookHandler(t *testing.T) {
-	req, err := http.NewRequest("GET", "/microcms_webhook", nil)
+	gin.SetMode(gin.TestMode)
+
+	w := httptest.NewRecorder()
+	_, r := gin.CreateTestContext(w)
+
+	r.POST("/microcms_webhook", webhookHandler)
+	req, err := http.NewRequest("POST", "/microcms_webhook", nil)
 	if err != nil {
 		t.Fatal(err)
 	}
+	r.ServeHTTP(w, req)
 
-	rr := httptest.NewRecorder()
-	handler := http.HandlerFunc(webhookHandler)
-	handler.ServeHTTP(rr, req)
-
-	if status := rr.Code; status != http.StatusBadRequest {
+	if status := w.Code; status != http.StatusBadRequest {
 		t.Errorf("handler returned wrong status code: got %v want %v",
-			status, http.StatusOK)
+			status, http.StatusBadRequest)
 	}
 
 	// TODO: testかく
