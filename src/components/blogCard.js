@@ -15,7 +15,7 @@ const blogCard = ({ title, thumbnail, createdAt, blogsId }) => {
       <div className="pj-button">
         <Link to={`/blogs/${blogsId}`}>
           {thumbnail ? (
-            <div className="rounded-t block mx-auto ">
+            <div className="rounded-md overflow-hidden block mx-auto max-w-3xl">
               <ImageContainer imageUrl={thumbnail} />
             </div>
           ) : (
