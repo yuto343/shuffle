@@ -12,6 +12,7 @@ module.exports = {
     image: "src/images/elements/icon.png",
   },
   plugins: [
+    "gatsby-plugin-preact",
     `gatsby-plugin-eslint`,
     `gatsby-plugin-react-helmet`,
     {
