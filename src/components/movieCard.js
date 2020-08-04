@@ -8,7 +8,6 @@ const memberCard = ({ title, youtubeId, sentence }) => {
         {title}
       </h2>
       <p className="mt-4 text-sm">{sentence}</p>
-      <p>インクリメンタルビルドのテストやで</p>
       <div className="pj-img-outer p-3 my-4">
         <div className="relative pj-youtube">
           <iframe
