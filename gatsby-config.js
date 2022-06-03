@@ -22,7 +22,7 @@ module.exports = {
         short_name: `shuffle`,
         start_url: `/`,
         background_color: fullConfig.theme.colors.white,
-        theme_color: fullConfig.theme.colors.teal["400"],
+        theme_color: "#828f98",
         display: `minimal-ui`,
         icon: `src/images/elements/icon.png`,
       },
