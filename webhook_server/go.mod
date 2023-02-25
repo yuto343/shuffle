@@ -10,6 +10,5 @@ require (
 	github.com/dustin/gojson v0.0.0-20160307161227-2e71ec9dd5ad // indirect
 	github.com/garyburd/go-oauth v0.0.0-20180319155456-bca2e7f09a17 // indirect
 	github.com/gin-gonic/gin v1.6.3
-	github.com/joho/godotenv v1.3.0
-	golang.org/x/net v0.0.0-20200519113804-d87ec0cfa476 // indirect
+	golang.org/x/net v0.7.0 // indirect
 )
